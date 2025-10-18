@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Nissan vs Toyota — ¿Qué marca es mejor?</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Saltar al contenido</a>
+
+    <header class="site-header" role="banner">
+      <div class="container">
+        <h1>Nissan vs Toyota: ¿Qué marca es mejor?</h1>
+        <p class="tagline">Comparación accesible y breve para aprender a estructurar contenido.</p>
+      </div>
+    </header>
+
+    <nav class="site-nav" role="navigation" aria-label="Navegación principal">
+      <div class="container">
+        <ul>
+          <li><a href="#intro">Inicio</a></li>
+          <li><a href="#comparison">Comparación</a></li>
+          <li><a href="#survey">Encuesta</a></li>
+          <li><a href="https://www.nissan-global.com/" target="_blank" rel="noopener">Nissan oficial</a></li>
+          <li><a href="https://global.toyota/" target="_blank" rel="noopener">Toyota oficial</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main id="main" class="site-main" role="main">
+      <div class="container">
+        <section id="intro" aria-labelledby="intro-heading">
+          <h2 id="intro-heading">Introducción</h2>
+          <p>
+            Esta página compara de forma breve y accesible dos marcas populares de automóviles:
+            <strong>Nissan</strong> y <strong>Toyota</strong>. Encontrarás imágenes con texto alternativo,
+            enlaces, una tabla con datos tabulares y un formulario corto para participar.
+          </p>
+        </section>
+
+        <section id="comparison">
+          <h2 id="comparison-heading">Comparación general</h2>
+
+          <div class="brand-logos">
+            <figure>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/2/23/Nissan_2020_logo.svg"
+                   alt="Logo oficial de Nissan" width="160" height="80" />
+              <figcaption>Logo oficial de Nissan</figcaption>
+            </figure>
+
+            <figure>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Toyota_logo_%28Red%29.svg/950px-Toyota_logo_%28Red%29.svg.png"
+                   alt="Logo oficial de Toyota" width="160" height="80" />
+              <figcaption>Logo oficial de Toyota</figcaption>
+            </figure>
+          </div>
+
+          <p>Abajo hay una tabla con datos tabulares sencillos que comparan algunos atributos clave.</p>
+
+          <table class="compare-table" summary="Comparación de Nissan y Toyota por país, fortalezas y modelo popular">
+            <caption aria-labelledby="comparison-heading">Comparación rápida: Nissan vs Toyota</caption>
+            <thead>
+              <tr>
+                <th scope="col">Marca</th>
+                <th scope="col">Origen</th>
+                <th scope="col">Fortalezas</th>
+                <th scope="col">Modelo representativo</th>
+                <th scope="col">Puntuación de fiabilidad (1-5)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Nissan</th>
+                <td>Japón</td>
+                <td>Innovación en eléctricos y rendimiento en algunos modelos</td>
+                <td>Leaf / Altima</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <th scope="row">Toyota</th>
+                <td>Japón</td>
+                <td>Fiabilidad, eficiencia y amplia red de concesionarios</td>
+                <td>Corolla / Prius</td>
+                <td>5</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section id="survey">
+          <h2>Encuesta rápida</h2>
+          <p>Participa y cuéntanos qué marca prefieres.</p>
+
+          <form id="prefForm" aria-describedby="form-desc">
+            <p id="form-desc">Selecciona una opción, deja tu nombre y correo si quieres que te contactemos.</p>
+
+            <fieldset aria-labelledby="survey-heading">
+              <legend id="survey-heading">¿Qué marca prefieres?</legend>
+              <div>
+                <input type="radio" id="pref-nissan" name="brand" value="Nissan" required />
+                <label for="pref-nissan">Nissan</label>
+              </div>
+              <div>
+                <input type="radio" id="pref-toyota" name="brand" value="Toyota" />
+                <label for="pref-toyota">Toyota</label>
+              </div>
+            </fieldset>
+
+            <div class="form-row">
+              <label for="name">Nombre (opcional)</label>
+              <input id="name" name="name" type="text" placeholder="Tu nombre" />
+            </div>
+
+            <div class="form-row">
+              <label for="email">Correo (opcional)</label>
+              <input id="email" name="email" type="email" placeholder="tu@ejemplo.com" />
+            </div>
+
+            <button type="submit" id="submit-btn" aria-labelledby="submit-label" title="Enviar encuesta">
+              <span id="submit-label">Enviar</span>
+            </button>
+
+            <div id="form-message" role="status" aria-live="polite" class="form-message" tabindex="-1"></div>
+          </form>
+
+          <script>
+            // Manejo accesible del formulario
+            (function () {
+              var form = document.getElementById('prefForm');
+              var msg = document.getElementById('form-message');
+              form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                var formData = new FormData(form);
+                var brand = formData.get('brand');
+                var name = formData.get('name') || '';
+                msg.textContent = 'Gracias' + (name ? (', ' + name) : '') + '. Has elegido: ' + brand;
+                form.reset();
+                msg.focus();
+              });
+            })();
+
+            // Oculta elementos externos que afectan la accesibilidad
+            document.addEventListener('DOMContentLoaded', () => {
+              const externalButtons = document.querySelectorAll('button.size-10');
+              externalButtons.forEach(btn => {
+                btn.setAttribute('aria-hidden', 'true');
+                btn.setAttribute('tabindex', '-1');
+              });
+              const invalidTabindex = document.querySelectorAll('[tabindex="1"]');
+              invalidTabindex.forEach(el => el.removeAttribute('tabindex'));
+            });
+          </script>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <div class="container">
+        <p>© 2025 Comparativa estudiantil. Página creada como ejercicio de accesibilidad.</p>
+        <p>Recursos: <a href="#comparison">Tabla comparativa</a> · <a href="#survey">Encuesta</a></p>
+      </div>
+    </footer>
+  </body>
+</html>
